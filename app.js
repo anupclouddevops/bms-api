@@ -9,17 +9,23 @@ var totalsRouter = require('./routes/totals')
 var bgtRouter = require('./routes/budget')
 var userRouter = require('./routes/user')
 var mongoose = require('mongoose')
-mongoose.connect(`mongodb://budgetappuser:${process.env.MONGO_DB_PASSWORD}@ds113732.mlab.com:13732/budgetappdb`)
+var swaggerUi = require('swagger-ui-express')
+var swaggerDocument = require('./swagger.json');
+
+// Connection to MongoDB hosted on mLab
+mongoose.connect(`mongodb://budgetappuser:${process.env.MONGO_DB_PASSWORD}@ds113732.mlab.com:13732/budgetappdb`);
 
 var app = express();
-
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Swagger UI
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+
+// API endpoints
 app.use('/items', itemsRouter);
 app.use('/totals', totalsRouter);
 app.use('/budget', bgtRouter)
