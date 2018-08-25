@@ -1,38 +1,28 @@
 var totals = require('./totals');
-var data = require('../modals/data');
-
-
-const calculateBudget = () => {
-
-    // 1. Calculate Total Expenses and Incomes
-    totals.calculateTotals('exp');
-    totals.calculateTotals('inc');
-
-    // 2. Calculate Budget
-
-    data.budget = data.totals.inc - data.totals.exp;
-
-    //3. Calculate Percentage
-    if (data.totals.inc > 0) {
-        data.percentage = Math.floor((data.totals.exp / data.totals.inc ) * 100 );
-    } else {
-        data.percentage = -1;
-    }
-}
 
 const getBudget = (req, res) => {
 
-    calculateBudget()
-
-    res.json({
-        budget: data.budget,
-        spent: data.percentage + '%',
-        expenses: data.totals.exp,
-        income: data.totals.inc
+    // 1. Calculate Total Expenses and Incomes
+    totals.calculateTotals('exp')
+    .then(totalExp => {
+         totals.calculateTotals('inc')
+        .then(totalInc => {
+            let percentage
+            const budget = totalInc - totalExp
+            if (totalInc > 0) {
+                percentage = Math.floor((totalExp/totalInc)*100)
+            } else {
+                percentage = -1
+            }
+            res.status(200).json({
+                budgetLeft: budget,
+                spent: percentage + '%',
+                expenses: totalExp,
+                income: totalInc
+            })
+        })
     })
-
 }
-
 
 module.exports = {
     getBudget
