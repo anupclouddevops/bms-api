@@ -3,7 +3,7 @@
   "info": {
     "description": "This is an API used as BFF for Anup Gupta's Budget Management System",
     "version": "1.0.0",
-    "title": "Budget management System API",
+    "title": "Budget Management System API",
     "termsOfService": "http://swagger.io/terms/",
     "contact": {
       "email": "anup.g.1211@gmail.com"

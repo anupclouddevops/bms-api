@@ -23,7 +23,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Swagger UI
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+var opts = {
+  customSiteTitle: "BMS API"
+}
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, opts))
 
 // API endpoints
 app.use('/items', itemsRouter);
