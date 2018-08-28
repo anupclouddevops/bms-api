@@ -4,15 +4,12 @@ services:
   - docker:dind
 
 stages:
-  - docker-build
-  - docker-push
+  - docker-build-and-push
 
-docker-build:
-  stage: docker-build
+docker-create:
+  stage: docker-build-and-push
   script:
     - docker build -t registry.gitlab.com/anup.cloud.devops/bms-api .
-
-docker-push:
-  stage: docker-push
-  script:
     - docker push registry.gitlab.com/anup.cloud.devops/bms-api
+    
+    
