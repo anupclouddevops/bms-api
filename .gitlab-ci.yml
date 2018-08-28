@@ -10,4 +10,9 @@ stages:
 docker-build:
   stage: docker-build
   script:
-    - docker build -t bms-api .
+    - docker build -t registry.gitlab.com/anup.cloud.devops/bms-api .
+
+docker-push:
+  stage: docker-push
+  script:
+    - docker push registry.gitlab.com/anup.cloud.devops/bms-api
