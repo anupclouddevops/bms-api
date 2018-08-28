@@ -7,7 +7,7 @@ stages:
   - docker-build-and-push
 
 before-script:
-  - docker login -u anup.cloud.devops -p Bhokal30#
+  - docker login -u anup.cloud.devops -p Bhokal30# registry.gitlab.com
 
 docker-create:
   stage: docker-build-and-push
