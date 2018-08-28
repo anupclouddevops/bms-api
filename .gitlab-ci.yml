@@ -7,11 +7,11 @@ stages:
   - docker-build-and-push
 
 before_script:
-  - docker login -u anup.cloud.devops -p "Bhokal30#" registry.gitlab.com
+  - docker login -u $MY_REGISTRY_USER -p $MY_REGISTRY_TOKEN registry.gitlab.com
 
 docker-create:
   stage: docker-build-and-push
   script:
-    - docker build -t registry.gitlab.com/anup.cloud.devops/bms-api .
-    - docker push registry.gitlab.com/anup.cloud.devops/bms-api
+    - docker build -t registry.gitlab.com/$MY_REGISTRY_USER/bms-api .
+    - docker push registry.gitlab.com/$MY_REGISTRY_USER/bms-api
     
