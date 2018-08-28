@@ -6,10 +6,13 @@ services:
 stages:
   - docker-build-and-push
 
+before-script:
+  - docker login -u anup.cloud.devops -p Bhokal30#
+
 docker-create:
   stage: docker-build-and-push
   script:
     - docker build -t registry.gitlab.com/anup.cloud.devops/bms-api .
     - docker push registry.gitlab.com/anup.cloud.devops/bms-api
-    
+
     
