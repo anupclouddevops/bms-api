@@ -1,0 +1,13 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+stages:
+  - docker-build
+  - docker-push
+
+docker-build:
+  stage: docker-build
+  script:
+    - docker build -t bms-api .
