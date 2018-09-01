@@ -12,6 +12,6 @@ before_script:
 docker-create:
   stage: docker-build-and-push
   script:
-    - docker build -t registry.gitlab.com/$MY_REGISTRY_USER/bms-api .
+    - docker build -t registry.gitlab.com/$MY_REGISTRY_USER/bms-api:latest .
     - docker push registry.gitlab.com/$MY_REGISTRY_USER/bms-api
     
