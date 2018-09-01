@@ -2,6 +2,9 @@ version: '2'
 
 services:
   bgtappbff:
-      image: bms-api:latest
+      # image: registry.gitlab.com/anup.cloud.devops/bms-api
+      image: bms-api-local
       ports:
         - "3000:3000"
+      environment:
+        MONGO_DB_PASSWORD: password123
