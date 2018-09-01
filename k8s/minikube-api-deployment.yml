@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: bms-api
+  namespace: bms
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: bms-api
+    spec:
+      containers:
+        - name: bms-api
+          image: registry.gitlab.com/anup.cloud.devops/bms-api
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+              protocol: "TCP"
