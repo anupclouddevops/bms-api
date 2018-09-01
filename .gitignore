@@ -1,3 +1,4 @@
 node_modules/
 nodemon.json
 docker-compose.yml
+k8s/minikube-secrets.yml
